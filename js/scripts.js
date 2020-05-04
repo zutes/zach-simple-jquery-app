@@ -90,7 +90,7 @@ var pokemonRepository = (function () {
     modalBody.append(abilitiesElement);
   }
 
-  
+
   return {
     add: add,
     getAll: getAll,
