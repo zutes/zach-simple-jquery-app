@@ -12,10 +12,8 @@ var pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     var $pokemonList = $('.pokemon-list');
+    var $button = $('<button type="button" class="btn btn-primary btn-md list-button" data-toggle="modal" data-target="#exampleModal">' + pokemon.name + "</button>");
     var $listItem = $('<li>');
-    var $button = $('<button type="button" class="btn btn-primary btn-md list-button" data-target="#exampleModal" data-toggle="modal">' +
-    pokemon.name +
-    "</button>");
     $listItem.append($button);
     $pokemonList.append($listItem);
     $button.on('click', function (event) {
@@ -25,6 +23,7 @@ var pokemonRepository = (function () {
 
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
       showModal(item);
     });
   }
@@ -71,11 +70,10 @@ var pokemonRepository = (function () {
   }
 
   function showModal(item) {
-    var $modalContainer = $('#modal-container');
-    $modalContainer.empty();
-    var modal = $('<div class="modal"></div>');
-    var closeButtonElement = $('<button class="modal-close">Close</button>');
-    closeButtonElement.on('click', hideModal);
+    var modalBody = $('.modal-body');
+    var modalTitle = $('.modal-title');
+    modalBody.empty();
+    modalTitle.empty();
     var nameElement = $('<h1>' + item.name + '</h1>');
     var imageElement = $('<img class="modal-img">');
     imageElement.attr('src', item.imageUrl);
@@ -84,46 +82,23 @@ var pokemonRepository = (function () {
     var typesElement = $('<p>' + 'Types: ' + item.types + '</p>');
     var abilitiesElement = $('<p>' + 'Abilities: ' + item.abilities + '</p>');
 
-    modal.append(closeButtonElement);
-    modal.append(nameElement);
-    modal.append(imageElement);
-    modal.append(heightElement);
-    modal.append(weightElement);
-    modal.append(typesElement);
-    modal.append(abilitiesElement);
-    $modalContainer.append(modal);
-
-    $modalContainer.addClass('is-visible');
+    modalBody.append(nameElement);
+    modalBody.append(imageElement);
+    modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typesElement);
+    modalBody.append(abilitiesElement);
   }
 
-  function hideModal() {
-    var $modalContainer = $('#modal-container');
-    $modalContainer.removeClass('is-visible');
-  }
-
-  jQuery(window).on('keydown', e => {
-    var $modalContainer = $('#modal-container');
-    if (e.key === 'Escape' && $modalContainer.hasClass('is-visible')) {
-      hideModal();
-    }
-  });
-
-  var $modalContainer = document.querySelector('#modal-container');
-  $modalContainer.addEventListener('click', e => {
-    var target = e.target;
-    if (target === $modalContainer) {
-      hideModal();
-    }
-  });
-
+  
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
+    showDetails: showDetails,
     showModal: showModal,
-    hideModal: hideModal
   };
 })();
 
