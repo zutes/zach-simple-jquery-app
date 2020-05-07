@@ -3,7 +3,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #afd4e8;
+        background-image: "img/pokemon.png";
   }
   
   h1 {
@@ -49,6 +49,7 @@ body {
 {
   background: #e8e0af;
 }
+
 @media all and (max-width: 1024px) {
   .pokemon-list li {
     width: 100%;
