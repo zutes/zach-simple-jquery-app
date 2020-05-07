@@ -3,7 +3,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #afd4e8;
+    background-color: #e8c3af;
   }
   
   h1 {
@@ -18,7 +18,7 @@ body {
   }
 
   .list-button {
-    background-color:#e8c3af;
+    background-color:#0052af;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
