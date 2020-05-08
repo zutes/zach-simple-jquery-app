@@ -49,6 +49,7 @@ height: auto;
 {
 background: #e8e0af;
 }
+
 @media all and (max-width: 1024px) {
 .pokemon-list li {
   width: 100%;
